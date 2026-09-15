@@ -39,6 +39,18 @@ Case Intake -> Evidence & Screening Request -> Evidence Review -> Screening Disa
 -> Decision -> Escalation & Decision Log -> Periodic Refresh / Retest
 ```
 
+## What we discovered reviewing our own build
+
+This register was built in one pass, then stress-tested against its own stated discipline before being called finished. Two real gaps surfaced, both fixed in the workbook, not just noted.
+
+**1. The disambiguation criterion didn't actually match how the two real cases were decided.**
+Case C-004 (R. Osei) escalates a PEP match with only a 4-year date-of-birth discrepancy, despite the nationality matching. Case C-010 (J. Santos) clears a sanctions match with a much larger discrepancy across two identifiers, plus a supporting document. Both outcomes are individually defensible, but the original Review Procedures criterion, "at least one independent identifier is inconsistent," doesn't explain why one case cleared and the other didn't. Written as-is, it could be read as contradicting the C-004 decision. Fixed by rewriting the criterion to weigh both the number of inconsistent identifiers and the size of the discrepancy, and to explicitly hold a small, single discrepancy against clearing when the listed record involves a currently active high-risk role.
+
+**2. The Ferrotech decline risked treating an unproven association as if it were confirmed wrongdoing.**
+The original note for C-006 said the UBO was "linked to two other entities flagged in prior unrelated case files," and the decision log cited that linkage as a factor in declining the application. Read carefully, that's the same failure mode this whole project is built to catch, in reverse: those other cases were never confirmed, only under review, so treating the association as decisive was an overclaim in the other direction. Fixed by rewording both the evidence note and the decision rationale to state plainly that unresolved linkage is an elevated-scrutiny factor requiring disclosure, not proof of wrongdoing, and that the decline rests primarily on the independently well-evidenced operational-substance gap.
+
+Neither of these was a factual error. Both were places where the stated standard and the actual decision didn't quite line up, the same category of gap documented in this portfolio's other GRC work, which is exactly why it's worth checking for on every build, not just the first one.
+
 ## License
 
 Fictional case-study project, built for portfolio and methodology demonstration purposes.
