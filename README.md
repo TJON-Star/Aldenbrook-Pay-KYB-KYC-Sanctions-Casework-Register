@@ -1,5 +1,7 @@
 # Aldenbrook Pay - KYB/KYC & Sanctions Casework Register
 
+![Dashboard Overview](Screenshot_Overview.png)
+
 [View the workbook](./Aldenbrook_KYB_KYC_Casework_Register.xlsx)
 
 A fictional case-study platform (contractor payments / Employer of Record), built to demonstrate evidence-first KYB, KYC, and sanctions/PEP/adverse-media casework, using the same discipline as this portfolio's GoLemon GRC assessment: no client, contractor, or screening data here is real.
@@ -32,6 +34,10 @@ An unresolved screening flag is not a confirmed match. A lack of documented adve
 - **C-006 (Ferrotech Trading DMCC):** No sanctions or adverse media hits, but no verifiable operational substance and a UBO linked to other flagged entities. Declined on the pattern across evidence, not on the screening result, which was clean.
 - **C-010 (J. Santos):** Sanctions screening returns a name match. Cleared as a false positive, but only after two independent identifiers (date of birth, nationality) and a supporting document contradicted the listed record, never on name dissimilarity alone.
 
+## Casework Summary
+
+![Casework Summary](Screenshot_Casework_Summary.png)
+
 ## Workflow
 
 ```
@@ -53,4 +59,4 @@ Neither of these was a factual error. Both were places where the stated standard
 
 ## License
 
-Fictional case-study project, built for portfolio and methodology demonstration purposes.
+[GNU General Public License v3.0](./LICENSE). Fictional case-study project, built for portfolio and methodology demonstration purposes.
