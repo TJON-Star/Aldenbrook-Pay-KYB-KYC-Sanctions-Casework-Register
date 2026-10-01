@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aldenbrook Pay - KYB/KYC & Sanctions Casework Register</title>
+<meta name="description" content="Evidence-first KYB/KYC and sanctions/PEP casework register for a fictional payments platform: case register, review procedures, and a traceable escalation and decision log.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0E1116;
+    --panel:#161A22;
+    --panel-2:#12151C;
+    --rule:#262B36;
+    --ink:#EDEAE2;
+    --ink-dim:#9CA0AC;
+    --ink-faint:#5A6070;
+    --verified:#3F9C82;
+    --critical:#C25B4A;
+    --provisional:#C9A227;
+    --serif: "Source Serif 4", Georgia, serif;
+    --sans: "Inter", -apple-system, sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, monospace;
+    --maxw: 900px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0; background:var(--bg); color:var(--ink); font-family:var(--sans); font-size:15.5px; line-height:1.6; -webkit-font-smoothing:antialiased;}
+  ::selection{background:var(--verified); color:#0E1116;}
+  a{color:var(--verified); text-decoration:none; border-bottom:1px solid rgba(63,156,130,0.35);}
+  a:hover{border-bottom-color:var(--verified);}
+
+  .topbar{position:sticky; top:0; z-index:50; background:rgba(14,17,22,0.92); backdrop-filter: blur(8px); border-bottom:1px solid var(--rule);}
+  .topbar-inner{max-width:var(--maxw); margin:0 auto; padding:14px 24px; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;}
+  .brand{font-family:var(--serif); font-size:15px; font-weight:600; color:var(--ink); white-space:nowrap;}
+  .navlinks{display:flex; gap:18px; flex-wrap:wrap;}
+  .navlinks a{font-family:var(--sans); font-size:13px; color:var(--ink-dim); border-bottom:none;}
+  .navlinks a:hover{color:var(--verified);}
+
+  main{max-width:var(--maxw); margin:0 auto; padding:0 24px 100px;}
+  section{padding-top:56px;}
+  .rule{border:0; border-top:1px solid var(--rule); margin:56px 0 0;}
+  h1{font-family:var(--serif); font-weight:700; font-size:clamp(26px,4vw,36px); line-height:1.18; margin:0 0 14px;}
+  h2{font-family:var(--serif); font-weight:600; font-size:22px; margin:0 0 6px;}
+  h3{font-family:var(--serif); font-weight:600; font-size:16px; margin:22px 0 8px;}
+  .section-lede{color:var(--ink-dim); font-size:14.5px; max-width:64ch; margin:0 0 26px;}
+  p{margin:0 0 14px;}
+  code{font-family:var(--mono); font-size:0.88em; background:var(--panel-2); padding:1px 6px; border-radius:3px; color:var(--provisional);}
+
+  .hero{padding-top:60px;}
+  .badges{display:flex; gap:8px; flex-wrap:wrap; margin:20px 0 26px;}
+  .badge{font-family:var(--mono); font-size:11px; padding:4px 10px; border-radius:3px; border:1px solid var(--rule); color:var(--ink-dim);}
+  .badge.status{color:var(--verified); border-color:rgba(63,156,130,0.4);}
+  .fiction-flag{border-left:3px solid var(--critical); background:rgba(194,91,74,0.08); padding:12px 16px; font-size:13.5px; color:var(--ink-dim); border-radius:0 4px 4px 0; margin:0 0 26px;}
+  .fiction-flag b{color:var(--ink);}
+
+  .principle{background:var(--panel); border:1px solid var(--rule); border-radius:6px; padding:22px 24px;}
+  .principle p{margin:0; font-family:var(--serif); font-size:16px; line-height:1.55; color:var(--ink);}
+
+  table{width:100%; border-collapse:collapse; font-size:13.5px;}
+  .table-wrap{overflow-x:auto; border:1px solid var(--rule); border-radius:6px;}
+  th{text-align:left; font-weight:600; font-size:12px; color:var(--ink-dim); padding:9px 12px; background:var(--panel-2); border-bottom:1px solid var(--rule); white-space:nowrap;}
+  td{padding:10px 12px; border-bottom:1px solid var(--rule); vertical-align:top;}
+  tr:last-child td{border-bottom:none;}
+  td.mono{font-family:var(--mono); font-size:12px;}
+
+  .tag{display:inline-block; font-family:var(--mono); font-size:11px; padding:2px 8px; border-radius:3px; border:1px solid;}
+  .tag.risk-high{color:var(--critical); border-color:rgba(194,91,74,0.5); background:rgba(194,91,74,0.08);}
+  .tag.risk-medium{color:var(--provisional); border-color:rgba(201,162,39,0.5); background:rgba(201,162,39,0.08);}
+  .tag.risk-low{color:var(--verified); border-color:rgba(63,156,130,0.5); background:rgba(63,156,130,0.08);}
+  .tag.status-approved{color:var(--verified); border-color:rgba(63,156,130,0.5); background:rgba(63,156,130,0.08);}
+  .tag.status-declined{color:var(--critical); border-color:rgba(194,91,74,0.5); background:rgba(194,91,74,0.08);}
+  .tag.status-review{color:var(--provisional); border-color:rgba(201,162,39,0.5); background:rgba(201,162,39,0.08);}
+
+  details{background:var(--panel); border:1px solid var(--rule); border-radius:6px; margin-bottom:10px; overflow:hidden;}
+  summary{cursor:pointer; padding:14px 16px; font-family:var(--serif); font-size:15px; display:flex; align-items:center; justify-content:space-between; list-style:none; gap:12px;}
+  summary::-webkit-details-marker{display:none;}
+  summary::after{content:"+"; font-family:var(--mono); color:var(--ink-faint); font-size:16px; margin-left:auto;}
+  details[open] summary::after{content:"\2212";}
+  .details-body{padding:0 16px 18px;}
+  .kv{display:grid; grid-template-columns:170px 1fr; gap:4px 16px; font-size:13.5px;}
+  .kv dt{color:var(--ink-dim); font-weight:500; padding:8px 0; border-top:1px solid var(--rule);}
+  .kv dd{margin:0; padding:8px 0; border-top:1px solid var(--rule);}
+  .kv dt:first-of-type, .kv dd:first-of-type{border-top:none;}
+
+  .bars{display:grid; gap:10px; margin-top:6px;}
+  .bar-row{display:grid; grid-template-columns:150px 1fr 40px; align-items:center; gap:10px; font-size:13px;}
+  .bar-track{background:var(--panel-2); border-radius:3px; height:14px; overflow:hidden; border:1px solid var(--rule);}
+  .bar-fill{height:100%; border-radius:3px;}
+
+  .lessons{counter-reset:lesson;}
+  .lesson{counter-increment:lesson; position:relative; padding:18px 0 18px 44px; border-top:1px solid var(--rule);}
+  .lessons > .lesson:first-child{border-top:none;}
+  .lesson::before{content:counter(lesson); position:absolute; left:0; top:18px; font-family:var(--mono); font-size:13px; color:var(--verified); width:28px; height:28px; border:1px solid rgba(63,156,130,0.4); border-radius:50%; display:flex; align-items:center; justify-content:center;}
+  .lesson h4{font-family:var(--serif); font-size:15.5px; margin:0 0 6px;}
+  .lesson p{font-size:13.8px; color:var(--ink-dim); margin:0;}
+  .lesson-close{margin-top:22px; padding:16px; background:var(--panel); border:1px solid var(--rule); border-radius:6px; font-size:13.8px; color:var(--ink-dim);}
+  .lesson-close b{color:var(--ink); font-family:var(--serif);}
+
+  .workflow{font-family:var(--mono); font-size:12.5px; color:var(--ink-dim); background:var(--panel-2); border:1px solid var(--rule); border-radius:6px; padding:16px; line-height:1.9; white-space:pre-wrap;}
+
+  footer{max-width:var(--maxw); margin:56px auto 0; padding:32px 24px 60px; border-top:1px solid var(--rule); font-size:13px; color:var(--ink-faint); display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;}
+  @media (max-width:640px){ .kv{grid-template-columns:1fr;} .kv dt{border-top:1px solid var(--rule);} .kv dd{border-top:none; padding-top:0; padding-bottom:10px;} .bar-row{grid-template-columns:110px 1fr 32px;} }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <span class="brand">Aldenbrook KYB/KYC Register</span>
+    <nav class="navlinks">
+      <a href="#cases">Cases</a>
+      <a href="#procedures">Procedures</a>
+      <a href="#summary">Summary</a>
+      <a href="#lessons">Lessons</a>
+      <a href="./Aldenbrook_KYB_KYC_Casework_Register.xlsx">Workbook</a>
+    </nav>
+  </div>
+</div>
+
+<main>
+
+  <section class="hero">
+    <h1>Aldenbrook Pay - KYB/KYC & Sanctions Casework Register</h1>
+    <p class="section-lede">A fictional case-study platform (contractor payments / Employer of Record), built to demonstrate evidence-first KYB, KYC, and sanctions/PEP/adverse-media casework.</p>
+    <div class="badges">
+      <span class="badge status">status: demonstration</span>
+      <span class="badge">10 cases</span>
+      <span class="badge">4 worked evidence trails</span>
+    </div>
+    <div class="fiction-flag"><b>Not real data.</b> No client, contractor, or screening result on this page or in the workbook is real. Aldenbrook Pay is a fictional platform built for methodology demonstration.</div>
+
+    <div class="principle">
+      <p>An unresolved screening flag is not a confirmed match. A lack of documented adverse media is not confirmation of a clean file, it means no adverse media was found in the sources checked as of the screening date. Missing or incomplete documentation is not evidence of low risk, it is an open gap that blocks a decision until it is resolved.</p>
+    </div>
+  </section>
+
+  <hr class="rule">
+  <section id="files">
+    <h2>Files in this workbook</h2>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Tab</th><th>Contents</th></tr></thead>
+        <tbody>
+          <tr><td class="mono">Case Register</td><td>10 representative cases across Client KYB, Contractor KYC, and Payment Investigation</td></tr>
+          <tr><td class="mono">Evidence &amp; Screening Register</td><td>Full evidence trails for four cases chosen to demonstrate the discipline</td></tr>
+          <tr><td class="mono">Review Procedures</td><td>Per evidence/screening type: what's reviewed, what passes, what escalates</td></tr>
+          <tr><td class="mono">Escalation &amp; Decision Log</td><td>Every decision, citing the specific evidence and criterion it rests on</td></tr>
+          <tr><td class="mono">Legend &amp; Instructions</td><td>Status coding and the discipline behind each tab</td></tr>
+          <tr><td class="mono">Casework Summary</td><td>Roll-up of the 10 cases by status and risk tier</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="margin-top:14px; font-size:13.5px;"><a href="./Aldenbrook_KYB_KYC_Casework_Register.xlsx">Aldenbrook_KYB_KYC_Casework_Register.xlsx</a></p>
+  </section>
+
+  <hr class="rule">
+  <section id="cases">
+    <h2>Case Register</h2>
+    <p class="section-lede">All 10 cases. Four are worked in full detail below; the rest are tracked at status level to keep this a realistic sample, not an exhaustive log.</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>ID</th><th>Subject</th><th>Type</th><th>Risk</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td class="mono">C-001</td><td>Solara Freight Ltd</td><td>Client KYB</td><td><span class="tag risk-medium">Medium</span></td><td><span class="tag status-approved">Approved</span></td></tr>
+          <tr><td class="mono">C-002</td><td>Vantage Digital Media FZE</td><td>Client KYB</td><td><span class="tag risk-medium">Medium</span></td><td><span class="tag status-review">Under Review</span></td></tr>
+          <tr><td class="mono">C-003</td><td>M. Alaoui</td><td>Contractor KYC</td><td><span class="tag risk-low">Low</span></td><td><span class="tag status-approved">Approved</span></td></tr>
+          <tr><td class="mono">C-004</td><td>R. Osei</td><td>Contractor KYC</td><td><span class="tag risk-high">High</span></td><td><span class="tag status-review">Escalated</span></td></tr>
+          <tr><td class="mono">C-005</td><td>Solara Freight - payout batch</td><td>Payment Investigation</td><td><span class="tag risk-medium">Medium</span></td><td><span class="tag status-approved">Resolved</span></td></tr>
+          <tr><td class="mono">C-006</td><td>Ferrotech Trading DMCC</td><td>Client KYB</td><td><span class="tag risk-high">High</span></td><td><span class="tag status-declined">Declined</span></td></tr>
+          <tr><td class="mono">C-007</td><td>T. Nakamura</td><td>Contractor KYC</td><td><span class="tag risk-low">Low</span></td><td><span class="tag status-approved">Approved (Refresh)</span></td></tr>
+          <tr><td class="mono">C-008</td><td>A. Petrov</td><td>Payment Investigation</td><td><span class="tag risk-high">High</span></td><td><span class="tag status-review">Escalated</span></td></tr>
+          <tr><td class="mono">C-009</td><td>BrightPath Consulting LLC</td><td>Client KYB</td><td><span class="tag risk-medium">Medium</span></td><td><span class="tag status-approved">Approved</span></td></tr>
+          <tr><td class="mono">C-010</td><td>J. Santos</td><td>Contractor KYC</td><td><span class="tag risk-medium">Medium</span></td><td><span class="tag status-approved">Approved</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Four worked cases</h3>
+    <details>
+      <summary>C-002 &middot; Vantage Digital Media FZE <span class="tag status-review">Under Review</span></summary>
+      <div class="details-body">
+        <dl class="kv">
+          <dt>Issue</dt><dd>UBO declaration leaves 20% ownership unattributed after two beneficial owners are named at 40% each.</dd>
+          <dt>Evidence status</dt><dd>Corporate registration, proof of operations, and authorized-rep ID all received and reviewed. UBO declaration marked Insufficient.</dd>
+          <dt>Handling</dt><dd>Recorded as an open gap, not a benign omission. Case remains open until the remaining 20% is identified and screened.</dd>
+        </dl>
+      </div>
+    </details>
+    <details>
+      <summary>C-004 &middot; R. Osei <span class="tag risk-high">Escalated</span></summary>
+      <div class="details-body">
+        <dl class="kv">
+          <dt>Issue</dt><dd>PEP screening returns a partial name match against a regional government official. Nationality matches; date of birth differs by 4 years.</dd>
+          <dt>Evidence status</dt><dd>Government ID received. Secondary identifying document requested to support disambiguation, not yet received.</dd>
+          <dt>Handling</dt><dd>Escalated rather than cleared. A single small discrepancy against a currently active high-risk role is not sufficient to rule out the match on its own.</dd>
+        </dl>
+      </div>
+    </details>
+    <details>
+      <summary>C-006 &middot; Ferrotech Trading DMCC <span class="tag status-declined">Declined</span></summary>
+      <div class="details-body">
+        <dl class="kv">
+          <dt>Issue</dt><dd>Entity registered less than two months before applying. No verifiable operational history beyond a website. UBO also sole director/UBO of two other entities under separate, unconcluded compliance review.</dd>
+          <dt>Evidence status</dt><dd>Sanctions and adverse media screening came back clean. Proof of operations marked Insufficient after two document requests.</dd>
+          <dt>Handling</dt><dd>Declined primarily on the independently well-evidenced operational-substance gap. The UBO linkage is treated as an elevated-scrutiny factor requiring disclosure, not standalone proof of wrongdoing, since those other cases remain open.</dd>
+        </dl>
+      </div>
+    </details>
+    <details>
+      <summary>C-010 &middot; J. Santos <span class="tag status-approved">Approved</span></summary>
+      <div class="details-body">
+        <dl class="kv">
+          <dt>Issue</dt><dd>Sanctions screening returns a name match. Date of birth and nationality both differ from the listed record.</dd>
+          <dt>Evidence status</dt><dd>Government ID and proof of address received and consistent with declared identity.</dd>
+          <dt>Handling</dt><dd>Cleared as a false positive, but only after two independent identifiers plus a supporting document contradicted the listed record, never on name dissimilarity alone.</dd>
+        </dl>
+      </div>
+    </details>
+  </section>
+
+  <hr class="rule">
+  <section id="procedures">
+    <h2>Review Procedures</h2>
+    <p class="section-lede">Defined per evidence or screening type, before evidence arrives, so a decision can be tested against a standard.</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Type</th><th>Pass</th><th>Escalate</th></tr></thead>
+        <tbody>
+          <tr><td>Sanctions screening</td><td>No match as of screening date</td><td>Any potential match, never auto-cleared or auto-declined</td></tr>
+          <tr><td>PEP screening</td><td>No match as of screening date</td><td>Any potential match, including partial name matches</td></tr>
+          <tr><td>Adverse media screening</td><td>None found in sources checked</td><td>Recorded as "none found," never as "confirmed clean"</td></tr>
+          <tr><td>Sanctions / PEP disambiguation</td><td>Multiple identifiers inconsistent, discrepancy too large for data-entry error, at least one corroborated by a document</td><td>Only one identifier differs, discrepancy is small, or the listed record is a currently active high-risk role</td></tr>
+          <tr><td>Ownership / UBO declaration</td><td>All owners identified, totals 100%, all named UBOs screened</td><td>Ownership undeclared, unattributed, or a UBO linked to other flagged entities</td></tr>
+          <tr><td>Proof of operations</td><td>Verifiable operational history consistent with declared activity</td><td>No verifiable history beyond marketing material, especially with recent incorporation</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <hr class="rule">
+  <section id="summary">
+    <h2>Casework Summary</h2>
+    <p class="section-lede">Roll-up of the 10 cases in the Case Register.</p>
+    <h3>By status</h3>
+    <div class="bars">
+      <div class="bar-row"><span>Closed - Approved</span><div class="bar-track"><div class="bar-fill" style="width:83%; background:var(--verified);"></div></div><span>5</span></div>
+      <div class="bar-row"><span>Escalated</span><div class="bar-track"><div class="bar-fill" style="width:33%; background:var(--provisional);"></div></div><span>2</span></div>
+      <div class="bar-row"><span>Under Review</span><div class="bar-track"><div class="bar-fill" style="width:17%; background:var(--provisional);"></div></div><span>1</span></div>
+      <div class="bar-row"><span>Closed - Declined</span><div class="bar-track"><div class="bar-fill" style="width:17%; background:var(--critical);"></div></div><span>1</span></div>
+      <div class="bar-row"><span>Closed - Resolved</span><div class="bar-track"><div class="bar-fill" style="width:17%; background:var(--verified);"></div></div><span>1</span></div>
+    </div>
+    <h3>By risk tier</h3>
+    <div class="bars">
+      <div class="bar-row"><span>Medium</span><div class="bar-track"><div class="bar-fill" style="width:83%; background:var(--provisional);"></div></div><span>5</span></div>
+      <div class="bar-row"><span>High</span><div class="bar-track"><div class="bar-fill" style="width:50%; background:var(--critical);"></div></div><span>3</span></div>
+      <div class="bar-row"><span>Low</span><div class="bar-track"><div class="bar-fill" style="width:33%; background:var(--verified);"></div></div><span>2</span></div>
+    </div>
+  </section>
+
+  <hr class="rule">
+  <section id="lessons">
+    <h2>What we discovered reviewing our own build</h2>
+    <p class="section-lede">This register was built in one pass, then stress-tested against its own stated discipline before being called finished. Two real gaps surfaced, both fixed in the workbook, not just noted here.</p>
+    <div class="lessons">
+      <div class="lesson">
+        <h4>The disambiguation criterion didn't actually match how the two real cases were decided.</h4>
+        <p>C-004 escalates a PEP match on a 4-year date-of-birth gap despite matching nationality. C-010 clears a sanctions match with a much larger gap across two identifiers, plus a supporting document. Both outcomes are defensible, but the original criterion, "at least one identifier is inconsistent," didn't explain why one case cleared and the other didn't, and could be read as contradicting the C-004 decision. Fixed by rewriting the criterion to weigh the number of inconsistent identifiers and the size of the discrepancy, not just whether one differs.</p>
+      </div>
+      <div class="lesson">
+        <h4>The Ferrotech decline risked treating an unproven association as confirmed wrongdoing.</h4>
+        <p>The original note cited the UBO's link to two other "flagged" entities as a factor in declining Ferrotech, but those other cases were never concluded, only under review. That's the same failure mode this whole project exists to catch, in reverse. Fixed by rewording the evidence note and the decision rationale to state plainly that unresolved linkage is an elevated-scrutiny factor requiring disclosure, not proof of wrongdoing, and that the decline rests primarily on the independently well-evidenced operational-substance gap.</p>
+      </div>
+    </div>
+    <div class="lesson-close"><b>Neither of these was a factual error.</b> Both were places where the stated standard and the actual decision didn't quite line up, the same category of gap worth checking for on every build, not just the first one.</div>
+  </section>
+
+</main>
+
+<footer>
+  <span>Fictional case-study project</span>
+  <span><a href="./Aldenbrook_KYB_KYC_Casework_Register.xlsx">Download the workbook</a></span>
+</footer>
+
+</body>
+</html>
