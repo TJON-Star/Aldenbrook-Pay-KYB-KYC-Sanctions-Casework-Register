@@ -11,35 +11,28 @@
 How the web page and the workbook fit together.
 
 ```mermaid
-flowchart LR
-    subgraph WEB["index.html (web page)"]
-        H["Hero and core principle"]
-        F["Files in this workbook"]
-        C["Case Register: 10 cases"]
-        P["Review Procedures"]
-        S["Casework Summary"]
-        L["Lessons: self-review"]
-    end
+flowchart TB
+    WEB["index.html<br/>web page"]
+    XLSX["Aldenbrook_KYB_KYC_Casework_Register.xlsx<br/>workbook"]
+    WEB -.->|"links to download"| XLSX
 
-    subgraph XLSX["Aldenbrook_KYB_KYC_Casework_Register.xlsx"]
-        T1["Case Register"]
-        T2["Evidence and Screening Register"]
-        T3["Review Procedures"]
-        T4["Escalation and Decision Log"]
-        T5["Legend and Instructions"]
-        T6["Casework Summary"]
-    end
+    WEB --> C["Case Register section<br/>10 cases, 4 worked in detail"]
+    WEB --> P["Review Procedures section"]
+    WEB --> S["Casework Summary section"]
 
-    C --- T1
-    C --- T2
-    P --- T3
-    S --- T6
-    F -.-> XLSX
-    T4 -. "every decision cites its evidence and criterion" .- T2
+    C --> T1["Tab: Case Register"]
+    C --> T2["Tab: Evidence and Screening Register"]
+    P --> T3["Tab: Review Procedures"]
+    S --> T6["Tab: Casework Summary"]
+    T2 --> T4["Tab: Escalation and Decision Log"]
 
+    XLSX --> T5["Tab: Legend and Instructions"]
+
+    classDef root fill:#1f2933,stroke:#9CA0AC,color:#EDEAE2;
     classDef web fill:#e8f4f0,stroke:#3F9C82,color:#0E1116;
     classDef sheet fill:#f4efe0,stroke:#C9A227,color:#0E1116;
-    class H,F,C,P,S,L web;
+    class WEB,XLSX root;
+    class C,P,S web;
     class T1,T2,T3,T4,T5,T6 sheet;
 ```
 
@@ -48,6 +41,7 @@ flowchart LR
 ## 2. Case portfolio (10 cases)
 
 ```mermaid
+%%{init: {"theme": "base", "themeVariables": {"pie1": "#3F9C82", "pie2": "#C9A227", "pie3": "#6C8EBF", "pie4": "#C25B4A", "pie5": "#8E6FB5", "pieStrokeColor": "#0E1116", "pieOuterStrokeColor": "#0E1116"}}}%%
 pie showData title Cases by status
     "Approved" : 5
     "Escalated" : 2
@@ -57,6 +51,7 @@ pie showData title Cases by status
 ```
 
 ```mermaid
+%%{init: {"theme": "base", "themeVariables": {"pie1": "#C9A227", "pie2": "#C25B4A", "pie3": "#3F9C82", "pieStrokeColor": "#0E1116", "pieOuterStrokeColor": "#0E1116"}}}%%
 pie showData title Cases by risk tier
     "Medium" : 5
     "High" : 3
@@ -77,21 +72,23 @@ Why C-004 was escalated and C-010 was cleared.
 
 ```mermaid
 flowchart TD
-    A["Screening run"] --> B{"Potential match?<br/>(including partial name match)"}
-    B -- "No match as of screening date" --> PASS["Pass<br/>Record date and sources checked"]
-    B -- "Yes" --> D{"Disambiguation test:<br/>multiple identifiers inconsistent,<br/>gap too large for data-entry error,<br/>at least one corroborated by a document?"}
-    D -- "Yes" --> CLEAR["Clear as false positive<br/>Example: C-010 J. Santos<br/>DOB and nationality both differ,<br/>ID and proof of address support"]
-    D -- "No: one identifier differs,<br/>small gap, or active high-risk role" --> ESC["Escalate<br/>Example: C-004 R. Osei<br/>nationality matches, DOB off by 4 years,<br/>secondary document requested"]
+    A["Screening run"] --> B{"Potential match?"}
+    B -- "No match as of screening date" --> PASS["Pass<br/>record date and sources"]
+    B -- "Yes, including partial name match" --> D{"Disambiguation<br/>test passed?"}
+    D -- "Yes" --> CLEAR["Clear as false positive<br/>C-010 J. Santos"]
+    D -- "No" --> ESC["Escalate<br/>C-004 R. Osei"]
 
-    NOTE["Never auto-cleared or auto-declined.<br/>Never cleared on name dissimilarity alone."]
-    B -.-> NOTE
+    CRIT["Test passes only if:<br/>multiple identifiers inconsistent,<br/>gap too large for data-entry error,<br/>at least one corroborated by a document"]
+    RULE["Never auto-cleared or auto-declined.<br/>Never cleared on name dissimilarity alone."]
+    D -.-> CRIT
+    B -.-> RULE
 
     classDef good fill:#e8f4f0,stroke:#3F9C82,color:#0E1116;
     classDef warn fill:#fbf3d6,stroke:#C9A227,color:#0E1116;
     classDef bad fill:#f8e4e0,stroke:#C25B4A,color:#0E1116;
     class PASS,CLEAR good;
-    class ESC warn;
-    class NOTE bad;
+    class ESC,CRIT warn;
+    class RULE bad;
 ```
 
 ---
@@ -102,14 +99,12 @@ How open gaps block or drive a decision.
 
 ```mermaid
 flowchart TD
-    K["Client KYB case"] --> U{"UBO declaration:<br/>all owners identified,<br/>totals 100%, all screened?"}
-    U -- "Yes" --> O{"Proof of operations:<br/>verifiable history consistent<br/>with declared activity?"}
-    U -- "No" --> GAP["Open gap, case stays open<br/>C-002 Vantage Digital Media FZE:<br/>40% + 40% named, 20% unattributed"]
+    K["Client KYB case"] --> U{"UBO declaration complete?<br/>all owners identified,<br/>totals 100%, all screened"}
+    U -- "No" --> GAP["Open gap, case stays open<br/>C-002 Vantage Digital Media FZE<br/>20% unattributed"]
+    U -- "Yes" --> O{"Proof of operations<br/>verifiable?"}
     O -- "Yes" --> OK["Proceed to decision"]
-    O -- "No" --> DEC["Declined<br/>C-006 Ferrotech Trading DMCC:<br/>registered under 2 months,<br/>no history beyond a website,<br/>2 document requests unmet"]
-
-    LINK["UBO linked to other entities under review:<br/>elevated scrutiny, requires disclosure.<br/>Not proof of wrongdoing."]
-    DEC -.-> LINK
+    O -- "No" --> DEC["Declined<br/>C-006 Ferrotech Trading DMCC<br/>no operational history,<br/>2 document requests unmet"]
+    DEC -.-> LINK["UBO linkage to other entities under review:<br/>elevated scrutiny, not proof of wrongdoing"]
 
     classDef good fill:#e8f4f0,stroke:#3F9C82,color:#0E1116;
     classDef warn fill:#fbf3d6,stroke:#C9A227,color:#0E1116;
@@ -134,24 +129,32 @@ flowchart TD
 
 ## 6. Self-review: two gaps found and fixed
 
+### Gap 1: disambiguation criterion
+
 ```mermaid
 flowchart LR
-    subgraph G1["Gap 1: disambiguation criterion"]
-        A1["Before:<br/>at least one identifier is inconsistent"] --> B1["Problem: did not explain why<br/>C-010 cleared but C-004 did not"]
-        B1 --> C1["After: weigh the number of inconsistent<br/>identifiers and the size of the discrepancy"]
-    end
-
-    subgraph G2["Gap 2: Ferrotech decline rationale"]
-        A2["Before: cited UBO link to<br/>other flagged entities"] --> B2["Problem: those cases were never concluded,<br/>so an unproven association read as fact"]
-        B2 --> C2["After: linkage stated as elevated scrutiny;<br/>decline rests on operational-substance gap"]
-    end
+    A1["Before<br/>at least one identifier is inconsistent"] --> B1["Problem<br/>did not explain why C-010 cleared<br/>but C-004 did not"] --> C1["After<br/>weigh number of inconsistent identifiers<br/>and size of the discrepancy"]
 
     classDef before fill:#f8e4e0,stroke:#C25B4A,color:#0E1116;
     classDef problem fill:#fbf3d6,stroke:#C9A227,color:#0E1116;
     classDef after fill:#e8f4f0,stroke:#3F9C82,color:#0E1116;
-    class A1,A2 before;
-    class B1,B2 problem;
-    class C1,C2 after;
+    class A1 before;
+    class B1 problem;
+    class C1 after;
+```
+
+### Gap 2: Ferrotech decline rationale
+
+```mermaid
+flowchart LR
+    A2["Before<br/>cited UBO link to other flagged entities"] --> B2["Problem<br/>those cases were never concluded,<br/>so an unproven association read as fact"] --> C2["After<br/>linkage stated as elevated scrutiny;<br/>decline rests on operational-substance gap"]
+
+    classDef before fill:#f8e4e0,stroke:#C25B4A,color:#0E1116;
+    classDef problem fill:#fbf3d6,stroke:#C9A227,color:#0E1116;
+    classDef after fill:#e8f4f0,stroke:#3F9C82,color:#0E1116;
+    class A2 before;
+    class B2 problem;
+    class C2 after;
 ```
 
 Neither was a factual error. Both were places where the stated standard and the actual decision did not quite line up.
