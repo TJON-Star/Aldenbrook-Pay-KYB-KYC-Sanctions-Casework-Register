@@ -131,9 +131,9 @@ flowchart TD
 | Case | Subject | Issue | Handling | Outcome |
 |---|---|---|---|---|
 | C-002 | Vantage Digital Media FZE | 20% of ownership unattributed | Recorded as an open gap, not a benign omission | Under Review |
-| C-004 | R. Osei | Partial PEP match, DOB differs by 4 years | Escalated; one small discrepancy against an active high-risk role is not enough to rule out the match | Escalated |
-| C-006 | Ferrotech Trading DMCC | Recent registration, no operational history | Declined mainly on the operational-substance gap; UBO linkage treated as elevated scrutiny only | Declined |
-| C-010 | J. Santos | Sanctions name match | Cleared only after two identifiers plus a document contradicted the listed record | Approved |
+| C-004 | R. Osei | Partial PEP match, DOB differs by 4 years | Escalated; nationality matches, the date of birth differs by four years, and secondary identifying evidence remains outstanding | Escalated |
+| C-006 | Ferrotech Trading DMCC | Recent registration, no operational history | Declined primarily on the operational-substance gap after two document requests; the workbook should evidence request dates, exact documents sought, responses and approval. UBO linkage remains an elevated-scrutiny factor, not proof of wrongdoing | Declined |
+| C-010 | J. Santos | Sanctions name match | Cleared after the date-of-birth and nationality discrepancies were assessed alongside government ID and proof-of-address evidence; the workbook should map each discrepancy to its corroborating document field | Approved |
 
 ---
 
