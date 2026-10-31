@@ -1,1 +1,228 @@
+<!--
+=====================================================================
+STEP 1 of 3: paste this CSS inside your existing <style> block,
+just before the closing </style> tag.
+=====================================================================
+-->
+<style>
+  .viz{margin:0 0 30px;}
+  .viz-scroll{overflow-x:auto; border:1px solid var(--rule); border-radius:6px; background:var(--panel); padding:12px;}
+  .viz-scroll svg{display:block; width:100%; min-width:680px; height:auto;}
+  .viz-note{font-size:13px; color:var(--ink-dim); margin:10px 0 0;}
+  .vz-box{fill:var(--panel-2); stroke:var(--rule); stroke-width:1.2;}
+  .vz-root{fill:var(--panel-2); stroke:var(--ink-dim); stroke-width:1.2;}
+  .vz-good{fill:rgba(63,156,130,0.12); stroke:var(--verified); stroke-width:1.2;}
+  .vz-warn{fill:rgba(201,162,39,0.12); stroke:var(--provisional); stroke-width:1.2;}
+  .vz-bad{fill:rgba(194,91,74,0.12); stroke:var(--critical); stroke-width:1.2;}
+  .vz-dash{stroke-dasharray:5 4;}
+  .vz-line{stroke:var(--ink-dim); fill:none; stroke-width:1.4;}
+  .vz-arrowhead{fill:var(--ink-dim);}
+  .vz-t{fill:var(--ink); font:500 13px var(--sans);}
+  .vz-s{fill:var(--ink-dim); font:400 12px var(--sans);}
+  .vz-h{fill:var(--ink-faint); font:600 11px var(--mono); letter-spacing:0.06em;}
+  .vz-lbl{fill:var(--ink-dim); font:500 11.5px var(--mono);}
+  .flow3{display:grid; grid-template-columns:1fr auto 1fr auto 1fr; gap:10px; align-items:stretch; margin-bottom:14px;}
+  .flow3 .arrow{align-self:center; color:var(--ink-faint); font-family:var(--mono);}
+  .fc{padding:12px 14px; border-radius:6px; border:1px solid; font-size:13px; color:var(--ink-dim); line-height:1.5;}
+  .fc b{display:block; font-family:var(--serif); font-size:12px; letter-spacing:0.04em; text-transform:uppercase; margin-bottom:4px; color:var(--ink);}
+  .fc.before{border-color:rgba(194,91,74,0.5); background:rgba(194,91,74,0.08);}
+  .fc.problem{border-color:rgba(201,162,39,0.5); background:rgba(201,162,39,0.08);}
+  .fc.after{border-color:rgba(63,156,130,0.5); background:rgba(63,156,130,0.08);}
+  @media (max-width:640px){ .flow3{grid-template-columns:1fr;} .flow3 .arrow{justify-self:center; transform:rotate(90deg);} }
+</style>
 
+<!--
+=====================================================================
+STEP 2 of 3 (optional): add this link inside <nav class="navlinks">
+=====================================================================
+<a href="#visuals">Visuals</a>
+-->
+
+<!--
+=====================================================================
+STEP 3 of 3: paste this whole <section> inside <main>, for example
+right after the "summary" section and before the "lessons" section.
+Each section is preceded by an <hr class="rule"> to match your layout.
+=====================================================================
+-->
+<hr class="rule">
+<section id="visuals">
+  <h2>Visual walkthrough</h2>
+  <p class="section-lede">Four diagrams showing how the page and workbook fit together, how a screening hit is resolved, how KYB evidence gaps drive a decision, and what the self-review changed.</p>
+
+  <!-- 1. PROJECT MAP -->
+  <h3>1. Project map</h3>
+  <div class="viz">
+    <div class="viz-scroll">
+      <svg viewBox="0 0 860 400" role="img" aria-label="Map of page sections to workbook tabs">
+        <defs><marker id="arr1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" class="vz-arrowhead"/></marker></defs>
+
+        <text x="20" y="34" class="vz-h">INDEX.HTML SECTIONS</text>
+        <text x="520" y="34" class="vz-h">WORKBOOK TABS (.XLSX)</text>
+
+        <!-- page sections -->
+        <rect x="20" y="78" width="280" height="44" rx="6" class="vz-good"/>
+        <text x="160" y="97" text-anchor="middle" class="vz-t">Case Register</text>
+        <text x="160" y="113" text-anchor="middle" class="vz-s">10 cases, 4 worked in detail</text>
+
+        <rect x="20" y="228" width="280" height="44" rx="6" class="vz-good"/>
+        <text x="160" y="255" text-anchor="middle" class="vz-t">Review Procedures</text>
+
+        <rect x="20" y="288" width="280" height="44" rx="6" class="vz-good"/>
+        <text x="160" y="315" text-anchor="middle" class="vz-t">Casework Summary</text>
+
+        <!-- workbook tabs -->
+        <rect x="520" y="50" width="320" height="40" rx="6" class="vz-warn"/>
+        <text x="680" y="75" text-anchor="middle" class="vz-t">Case Register</text>
+
+        <rect x="520" y="110" width="320" height="40" rx="6" class="vz-warn"/>
+        <text x="680" y="135" text-anchor="middle" class="vz-t">Evidence &amp; Screening Register</text>
+
+        <rect x="520" y="170" width="320" height="40" rx="6" class="vz-warn"/>
+        <text x="680" y="195" text-anchor="middle" class="vz-t">Escalation &amp; Decision Log</text>
+
+        <rect x="520" y="230" width="320" height="40" rx="6" class="vz-warn"/>
+        <text x="680" y="255" text-anchor="middle" class="vz-t">Review Procedures</text>
+
+        <rect x="520" y="290" width="320" height="40" rx="6" class="vz-warn"/>
+        <text x="680" y="315" text-anchor="middle" class="vz-t">Casework Summary</text>
+
+        <rect x="520" y="350" width="320" height="40" rx="6" class="vz-box vz-dash"/>
+        <text x="680" y="375" text-anchor="middle" class="vz-t">Legend &amp; Instructions</text>
+
+        <!-- connectors -->
+        <path d="M300 100 L520 70" class="vz-line" marker-end="url(#arr1)"/>
+        <path d="M300 100 L520 130" class="vz-line" marker-end="url(#arr1)"/>
+        <path d="M300 250 L520 250" class="vz-line" marker-end="url(#arr1)"/>
+        <path d="M300 310 L520 310" class="vz-line" marker-end="url(#arr1)"/>
+        <path d="M680 150 L680 170" class="vz-line" marker-end="url(#arr1)"/>
+      </svg>
+    </div>
+    <p class="viz-note">The decision log cites the specific evidence and criterion behind every decision, which is why it sits directly under the evidence register.</p>
+  </div>
+
+  <!-- 2. SCREENING DECISION FLOW -->
+  <h3>2. Screening decision flow (sanctions / PEP)</h3>
+  <div class="viz">
+    <div class="viz-scroll">
+      <svg viewBox="0 0 860 420" role="img" aria-label="Decision flow for sanctions and PEP screening hits">
+        <defs><marker id="arr2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" class="vz-arrowhead"/></marker></defs>
+
+        <rect x="330" y="10" width="200" height="36" rx="6" class="vz-root"/>
+        <text x="430" y="33" text-anchor="middle" class="vz-t">Screening run</text>
+        <path d="M430 46 L430 90" class="vz-line" marker-end="url(#arr2)"/>
+
+        <polygon points="430,90 530,130 430,170 330,130" class="vz-box"/>
+        <text x="430" y="135" text-anchor="middle" class="vz-t">Potential match?</text>
+
+        <!-- pass -->
+        <path d="M330 130 L250 130" class="vz-line" marker-end="url(#arr2)"/>
+        <text x="290" y="122" text-anchor="middle" class="vz-lbl">No</text>
+        <rect x="20" y="100" width="230" height="60" rx="6" class="vz-good"/>
+        <text x="135" y="122" text-anchor="middle" class="vz-t">Pass</text>
+        <text x="135" y="139" text-anchor="middle" class="vz-s">No match as of screening date;</text>
+        <text x="135" y="153" text-anchor="middle" class="vz-s">record date and sources checked</text>
+
+        <!-- rule note -->
+        <path d="M530 130 L550 130" class="vz-line vz-dash"/>
+        <rect x="550" y="95" width="300" height="70" rx="6" class="vz-bad"/>
+        <text x="700" y="125" text-anchor="middle" class="vz-s">Never auto-cleared or auto-declined.</text>
+        <text x="700" y="143" text-anchor="middle" class="vz-s">Never cleared on name dissimilarity alone.</text>
+
+        <!-- to disambiguation -->
+        <path d="M430 170 L430 215" class="vz-line" marker-end="url(#arr2)"/>
+        <text x="442" y="196" class="vz-lbl">Yes, including partial name match</text>
+
+        <polygon points="430,215 550,265 430,315 310,265" class="vz-box"/>
+        <text x="430" y="262" text-anchor="middle" class="vz-t">Disambiguation</text>
+        <text x="430" y="278" text-anchor="middle" class="vz-t">test passed?</text>
+
+        <!-- yes -> clear -->
+        <path d="M310 265 H135 V340" class="vz-line" marker-end="url(#arr2)"/>
+        <text x="222" y="257" text-anchor="middle" class="vz-lbl">Yes</text>
+        <rect x="20" y="340" width="230" height="60" rx="6" class="vz-good"/>
+        <text x="135" y="365" text-anchor="middle" class="vz-t">Clear as false positive</text>
+        <text x="135" y="384" text-anchor="middle" class="vz-s">C-010 J. Santos</text>
+
+        <!-- no -> escalate -->
+        <path d="M550 265 H725 V340" class="vz-line" marker-end="url(#arr2)"/>
+        <text x="638" y="257" text-anchor="middle" class="vz-lbl">No</text>
+        <rect x="610" y="340" width="230" height="60" rx="6" class="vz-warn"/>
+        <text x="725" y="365" text-anchor="middle" class="vz-t">Escalate</text>
+        <text x="725" y="384" text-anchor="middle" class="vz-s">C-004 R. Osei</text>
+      </svg>
+    </div>
+    <p class="viz-note"><b>The test passes only if</b> multiple identifiers are inconsistent, the gap is too large to be a data-entry error, and at least one identifier is corroborated by a document. A single small discrepancy, or a listed record that is a currently active high-risk role, escalates.</p>
+  </div>
+
+  <!-- 3. KYB EVIDENCE GAPS -->
+  <h3>3. KYB evidence gaps</h3>
+  <div class="viz">
+    <div class="viz-scroll">
+      <svg viewBox="0 0 860 490" role="img" aria-label="How ownership and operations evidence gaps drive KYB decisions">
+        <defs><marker id="arr3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" class="vz-arrowhead"/></marker></defs>
+
+        <rect x="330" y="10" width="200" height="36" rx="6" class="vz-root"/>
+        <text x="430" y="33" text-anchor="middle" class="vz-t">Client KYB case</text>
+        <path d="M430 46 L430 78" class="vz-line" marker-end="url(#arr3)"/>
+
+        <polygon points="430,78 560,120 430,162 300,120" class="vz-box"/>
+        <text x="430" y="117" text-anchor="middle" class="vz-t">UBO declaration</text>
+        <text x="430" y="133" text-anchor="middle" class="vz-t">complete?</text>
+
+        <!-- no -> gap -->
+        <path d="M560 120 L620 120" class="vz-line" marker-end="url(#arr3)"/>
+        <text x="590" y="112" text-anchor="middle" class="vz-lbl">No</text>
+        <rect x="620" y="80" width="230" height="80" rx="6" class="vz-warn"/>
+        <text x="735" y="103" text-anchor="middle" class="vz-t">Open gap: case stays open</text>
+        <text x="735" y="122" text-anchor="middle" class="vz-s">C-002 Vantage Digital Media FZE</text>
+        <text x="735" y="140" text-anchor="middle" class="vz-s">20% ownership unattributed</text>
+
+        <!-- yes -> operations -->
+        <path d="M430 162 L430 208" class="vz-line" marker-end="url(#arr3)"/>
+        <text x="442" y="190" class="vz-lbl">Yes</text>
+
+        <polygon points="430,208 560,250 430,292 300,250" class="vz-box"/>
+        <text x="430" y="247" text-anchor="middle" class="vz-t">Proof of operations</text>
+        <text x="430" y="263" text-anchor="middle" class="vz-t">verifiable?</text>
+
+        <!-- yes -> proceed -->
+        <path d="M300 250 L240 250" class="vz-line" marker-end="url(#arr3)"/>
+        <text x="270" y="242" text-anchor="middle" class="vz-lbl">Yes</text>
+        <rect x="20" y="232" width="220" height="36" rx="6" class="vz-good"/>
+        <text x="130" y="255" text-anchor="middle" class="vz-t">Proceed to decision</text>
+
+        <!-- no -> declined -->
+        <path d="M430 292 L430 330" class="vz-line" marker-end="url(#arr3)"/>
+        <text x="442" y="316" class="vz-lbl">No</text>
+        <rect x="290" y="330" width="280" height="92" rx="6" class="vz-bad"/>
+        <text x="430" y="352" text-anchor="middle" class="vz-t">Declined</text>
+        <text x="430" y="370" text-anchor="middle" class="vz-s">C-006 Ferrotech Trading DMCC</text>
+        <text x="430" y="388" text-anchor="middle" class="vz-s">No operational history beyond a website;</text>
+        <text x="430" y="406" text-anchor="middle" class="vz-s">two document requests unmet</text>
+
+        <!-- linkage note -->
+        <path d="M430 422 L430 440" class="vz-line vz-dash"/>
+        <rect x="110" y="440" width="640" height="36" rx="6" class="vz-warn"/>
+        <text x="430" y="463" text-anchor="middle" class="vz-s">UBO linkage to other entities under review: elevated scrutiny, not proof of wrongdoing</text>
+      </svg>
+    </div>
+  </div>
+
+  <!-- 4. SELF-REVIEW -->
+  <h3>4. Self-review: two gaps found and fixed</h3>
+  <div class="flow3">
+    <div class="fc before"><b>Before</b>Criterion: at least one identifier is inconsistent.</div>
+    <div class="arrow">&rarr;</div>
+    <div class="fc problem"><b>Problem</b>Did not explain why C-010 cleared but C-004 did not.</div>
+    <div class="arrow">&rarr;</div>
+    <div class="fc after"><b>After</b>Weighs the number of inconsistent identifiers and the size of the discrepancy.</div>
+  </div>
+  <div class="flow3">
+    <div class="fc before"><b>Before</b>Decline cited the UBO&rsquo;s link to other flagged entities.</div>
+    <div class="arrow">&rarr;</div>
+    <div class="fc problem"><b>Problem</b>Those cases were never concluded, so an unproven association read as fact.</div>
+    <div class="arrow">&rarr;</div>
+    <div class="fc after"><b>After</b>Linkage stated as elevated scrutiny; the decline rests on the operational-substance gap.</div>
+  </div>
+</section>
