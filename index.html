@@ -137,12 +137,13 @@
   <div class="topbar-inner">
     <span class="brand">Aldenbrook KYB/KYC Register</span>
     <nav class="navlinks">
+      <a href="#files">Workbook</a>
       <a href="#cases">Cases</a>
       <a href="#procedures">Procedures</a>
       <a href="#summary">Summary</a>
       <a href="#visuals">Visuals</a>
       <a href="#lessons">Lessons</a>
-      <a href="./Aldenbrook_KYB_KYC_Casework_Register.xlsx">Workbook</a>
+      <a href="./Aldenbrook_KYB_KYC_Casework_Register..xlsx">Workbook</a>
     </nav>
   </div>
 </div>
@@ -160,7 +161,7 @@
     <div class="fiction-flag"><b>Not real data.</b> No client, contractor, or screening result on this page or in the workbook is real. Aldenbrook Pay is a fictional platform built for methodology demonstration.</div>
 
     <div class="principle">
-      <p>An unresolved screening flag is not a confirmed match. A lack of documented adverse media is not confirmation of a clean file, it means no adverse media was found in the sources checked as of the screening date. Missing or incomplete documentation is not evidence of low risk, it is an open gap that blocks a decision until it is resolved.</p>
+      <p>An unresolved screening flag is not a confirmed match. No adverse-media result is confirmation of a clean file; it means no adverse media was found in the sources checked as of the screening date. Missing or incomplete documentation is not evidence of low risk, it is an open gap that blocks a decision until it is resolved.</p>
     </div>
   </section>
 
@@ -180,7 +181,7 @@
         </tbody>
       </table>
     </div>
-    <p style="margin-top:14px; font-size:13.5px;"><a href="./Aldenbrook_KYB_KYC_Casework_Register.xlsx">Aldenbrook_KYB_KYC_Casework_Register.xlsx</a></p>
+    <p style="margin-top:14px; font-size:13.5px;"><a href="./Aldenbrook_KYB_KYC_Casework_Register..xlsx">Aldenbrook_KYB_KYC_Casework_Register.xlsx</a></p>
   </section>
 
   <hr class="rule">
@@ -222,7 +223,7 @@
         <dl class="kv">
           <dt>Issue</dt><dd>PEP screening returns a partial name match against a regional government official. Nationality matches; date of birth differs by 4 years.</dd>
           <dt>Evidence status</dt><dd>Government ID received. Secondary identifying document requested to support disambiguation, not yet received.</dd>
-          <dt>Handling</dt><dd>Escalated rather than cleared. A single small discrepancy against a currently active high-risk role is not sufficient to rule out the match on its own.</dd>
+          <dt>Handling</dt><dd>Escalated rather than cleared. The four-year date-of-birth discrepancy does not, by itself, establish a false positive. Nationality matches, and a secondary identifying document remains outstanding.</dd>
         </dl>
       </div>
     </details>
@@ -231,7 +232,7 @@
       <div class="details-body">
         <dl class="kv">
           <dt>Issue</dt><dd>Entity registered less than two months before applying. No verifiable operational history beyond a website. UBO also sole director/UBO of two other entities under separate, unconcluded compliance review.</dd>
-          <dt>Evidence status</dt><dd>Sanctions and adverse media screening came back clean. Proof of operations marked Insufficient after two document requests.</dd>
+          <dt>Evidence status</dt><dd>No sanctions or adverse-media hits were recorded in the sources checked. This does not establish that the file is clean. Proof of operations marked Insufficient after two document requests.</dd>
           <dt>Handling</dt><dd>Declined primarily on the independently well-evidenced operational-substance gap. The UBO linkage is treated as an elevated-scrutiny factor requiring disclosure, not standalone proof of wrongdoing, since those other cases remain open.</dd>
         </dl>
       </div>
@@ -259,7 +260,7 @@
           <tr><td>Sanctions screening</td><td>No match as of screening date</td><td>Any potential match, never auto-cleared or auto-declined</td></tr>
           <tr><td>PEP screening</td><td>No match as of screening date</td><td>Any potential match, including partial name matches</td></tr>
           <tr><td>Adverse media screening</td><td>None found in sources checked</td><td>Recorded as "none found," never as "confirmed clean"</td></tr>
-          <tr><td>Sanctions / PEP disambiguation</td><td>Multiple identifiers inconsistent, discrepancy too large for data-entry error, at least one corroborated by a document</td><td>Only one identifier differs, discrepancy is small, or the listed record is a currently active high-risk role</td></tr>
+          <tr><td>Identity disambiguation (sanctions / PEP)</td><td>Multiple independent identifiers contradict the candidate record; at least one is corroborated by reliable documentary evidence; rationale recorded</td><td>Material identifiers remain unresolved, supporting evidence is incomplete, or case-specific risk context requires escalation</td></tr>
           <tr><td>Ownership / UBO declaration</td><td>All owners identified, totals 100%, all named UBOs screened</td><td>Ownership undeclared, unattributed, or a UBO linked to other flagged entities</td></tr>
           <tr><td>Proof of operations</td><td>Verifiable operational history consistent with declared activity</td><td>No verifiable history beyond marketing material, especially with recent incorporation</td></tr>
         </tbody>
@@ -270,20 +271,20 @@
   <hr class="rule">
   <section id="summary">
     <h2>Casework Summary</h2>
-    <p class="section-lede">Roll-up of the 10 cases in the Case Register.</p>
+    <p class="section-lede">Roll-up of the 10 cases in the Case Register. Bar lengths are relative to the largest category in each chart.</p>
     <h3>By status</h3>
     <div class="bars">
-      <div class="bar-row"><span>Closed - Approved</span><div class="bar-track"><div class="bar-fill" style="width:83%; background:var(--verified);"></div></div><span>5</span></div>
-      <div class="bar-row"><span>Escalated</span><div class="bar-track"><div class="bar-fill" style="width:33%; background:var(--provisional);"></div></div><span>2</span></div>
-      <div class="bar-row"><span>Under Review</span><div class="bar-track"><div class="bar-fill" style="width:17%; background:var(--provisional);"></div></div><span>1</span></div>
-      <div class="bar-row"><span>Closed - Declined</span><div class="bar-track"><div class="bar-fill" style="width:17%; background:var(--critical);"></div></div><span>1</span></div>
-      <div class="bar-row"><span>Closed - Resolved</span><div class="bar-track"><div class="bar-fill" style="width:17%; background:var(--verified);"></div></div><span>1</span></div>
+      <div class="bar-row"><span>Closed - Approved</span><div class="bar-track"><div class="bar-fill" style="width:100%; background:var(--verified);"></div></div><span>5</span></div>
+      <div class="bar-row"><span>Escalated</span><div class="bar-track"><div class="bar-fill" style="width:40%; background:var(--provisional);"></div></div><span>2</span></div>
+      <div class="bar-row"><span>Under Review</span><div class="bar-track"><div class="bar-fill" style="width:20%; background:var(--provisional);"></div></div><span>1</span></div>
+      <div class="bar-row"><span>Closed - Declined</span><div class="bar-track"><div class="bar-fill" style="width:20%; background:var(--critical);"></div></div><span>1</span></div>
+      <div class="bar-row"><span>Closed - Resolved</span><div class="bar-track"><div class="bar-fill" style="width:20%; background:var(--verified);"></div></div><span>1</span></div>
     </div>
     <h3>By risk tier</h3>
     <div class="bars">
       <div class="bar-row"><span>Medium</span><div class="bar-track"><div class="bar-fill" style="width:83%; background:var(--provisional);"></div></div><span>5</span></div>
-      <div class="bar-row"><span>High</span><div class="bar-track"><div class="bar-fill" style="width:50%; background:var(--critical);"></div></div><span>3</span></div>
-      <div class="bar-row"><span>Low</span><div class="bar-track"><div class="bar-fill" style="width:33%; background:var(--verified);"></div></div><span>2</span></div>
+      <div class="bar-row"><span>High</span><div class="bar-track"><div class="bar-fill" style="width:60%; background:var(--critical);"></div></div><span>3</span></div>
+      <div class="bar-row"><span>Low</span><div class="bar-track"><div class="bar-fill" style="width:40%; background:var(--verified);"></div></div><span>2</span></div>
     </div>
   </section>
 
@@ -394,7 +395,7 @@
           <text x="725" y="384" text-anchor="middle" class="vz-s">C-004 R. Osei</text>
         </svg>
       </div>
-      <p class="viz-note"><b>The test passes only if</b> multiple identifiers are inconsistent, the gap is too large to be a data-entry error, and at least one identifier is corroborated by a document. A single small discrepancy, or a listed record that is a currently active high-risk role, escalates.</p>
+      <p class="viz-note"><b>Identity resolution requires multiple independent identifiers that contradict the candidate record, with at least one supported by reliable documentary evidence. Material unresolved identifiers or incomplete evidence require escalation. Apply the relevant sanctions or PEP procedures; this diagram illustrates identity resolution, not identical legal treatment.</p>
     </div>
 
     <!-- 3. KYB EVIDENCE GAPS -->
@@ -472,11 +473,11 @@
   <hr class="rule">
   <section id="lessons">
     <h2>What we discovered reviewing our own build</h2>
-    <p class="section-lede">This register was built in one pass, then stress-tested against its own stated discipline before being called finished. Two real gaps surfaced, both fixed in the workbook, not just noted here.</p>
+    <p class="section-lede">This register was built in one pass, then stress-tested against its own stated discipline before being called finished. Two quality-control gaps surfaced and were corrected in the workbook, not just noted here.</p>
     <div class="lessons">
       <div class="lesson">
         <h4>The disambiguation criterion didn't actually match how the two real cases were decided.</h4>
-        <p>C-004 escalates a PEP match on a 4-year date-of-birth gap despite matching nationality. C-010 clears a sanctions match with a much larger gap across two identifiers, plus a supporting document. Both outcomes are defensible, but the original criterion, "at least one identifier is inconsistent," didn't explain why one case cleared and the other didn't, and could be read as contradicting the C-004 decision. Fixed by rewriting the criterion to weigh the number of inconsistent identifiers and the size of the discrepancy, not just whether one differs.</p>
+        <p>C-004 escalates a PEP match on a 4-year date-of-birth gap despite matching nationality. C-010 clears a sanctions match with a much larger gap across two identifiers, plus a supporting document. Both outcomes require distinct, evidence-based reasoning. The original criterion, "at least one identifier is inconsistent," did not explain why one case cleared and the other did not, and could be read as contradicting the C-004 decision. Fixed by rewriting the criterion to weigh the number of inconsistent identifiers and the size of the discrepancy, not just whether one differs.</p>
       </div>
       <div class="lesson">
         <h4>The Ferrotech decline risked treating an unproven association as confirmed wrongdoing.</h4>
@@ -490,7 +491,7 @@
 
 <footer>
   <span>Fictional case-study project</span>
-  <span><a href="./Aldenbrook_KYB_KYC_Casework_Register.xlsx">Download the workbook</a></span>
+  <span><a href="./Aldenbrook_KYB_KYC_Casework_Register..xlsx">Download the workbook</a></span>
 </footer>
 
 </body>
