@@ -2,25 +2,29 @@
 
 > **Not real data.** Aldenbrook Pay is a fictional platform built to demonstrate evidence-first KYB, KYC, and sanctions/PEP/adverse-media casework.
 
-## Dashboard preview
+## Primary artifact: HTML dashboard
 
-[![Aldenbrook Pay casework register preview](./Screenshot_Overview.png)](https://tjon-star.github.io/Aldenbrook-Pay-KYB-KYC-Sanctions-Casework-Register/)
+The standalone **`index.html` file is the primary project artifact**. It contains the complete dashboard, case register, review procedures, casework summary, visual walkthroughs, and lessons learned. GitHub Pages publishes this HTML file as the live dashboard. The Excel workbook is a supporting, downloadable companion, not the primary presentation.
 
-[Open the live HTML dashboard](https://tjon-star.github.io/Aldenbrook-Pay-KYB-KYC-Sanctions-Casework-Register/) · [View index.html source](./index.html) · [Download the Excel workbook](./Aldenbrook_KYB_KYC_Casework_Register..xlsx)
+[![Aldenbrook Pay HTML dashboard preview](./Screenshot_Overview.png)](https://tjon-star.github.io/Aldenbrook-Pay-KYB-KYC-Sanctions-Casework-Register/)
 
-**Core principle:** an unresolved screening flag is not a confirmed match; "no adverse media found" is not "confirmed clean"; and missing documentation is an open gap that blocks a decision, not evidence of low risk.
+**[Open the live HTML dashboard](https://tjon-star.github.io/Aldenbrook-Pay-KYB-KYC-Sanctions-Casework-Register/)**
+
+[View the `index.html` source](./index.html) · [Download the supporting Excel workbook](./Aldenbrook_KYB_KYC_Casework_Register..xlsx)
+
+**Core principle:** an unresolved screening flag is not a confirmed match; "no adverse media found" is not "confirmed clean"; and missing documentation is an open gap, not evidence of low risk.
 
 ---
 
 ## 1. Project map
 
-How the web page and the workbook fit together.
+The HTML dashboard is the primary presentation layer. The Excel workbook is the supporting detailed register.
 
 ```mermaid
 flowchart TB
-    WEB["index.html<br/>web page"]
-    XLSX["Aldenbrook_KYB_KYC_Casework_Register..xlsx<br/>workbook"]
-    WEB -.->|"links to download"| XLSX
+    WEB["PRIMARY: index.html<br/>HTML dashboard"]
+    XLSX["SUPPORTING: Excel workbook<br/>detailed register"]
+    WEB -.->|"optional download"| XLSX
 
     WEB --> C["Case Register section<br/>10 cases, 4 worked in detail"]
     WEB --> P["Review Procedures section"]
