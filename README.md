@@ -2,7 +2,11 @@
 
 > **Not real data.** Aldenbrook Pay is a fictional platform built to demonstrate evidence-first KYB, KYC, and sanctions/PEP/adverse-media casework.
 
-<sub>**View the visual casework register:** [Open the live HTML dashboard](https://tjon-star.github.io/Aldenbrook-Pay-KYB-KYC-Sanctions-Casework-Register/) · [View the HTML source](./index.html) · [Download the Excel workbook](./Aldenbrook_KYB_KYC_Casework_Register..xlsx)</sub>
+## Dashboard preview
+
+[![Aldenbrook Pay casework register preview](./Screenshot_Overview.png)](https://tjon-star.github.io/Aldenbrook-Pay-KYB-KYC-Sanctions-Casework-Register/)
+
+[Open the live HTML dashboard](https://tjon-star.github.io/Aldenbrook-Pay-KYB-KYC-Sanctions-Casework-Register/) · [View index.html source](./index.html) · [Download the Excel workbook](./Aldenbrook_KYB_KYC_Casework_Register..xlsx)
 
 **Core principle:** an unresolved screening flag is not a confirmed match; "no adverse media found" is not "confirmed clean"; and missing documentation is an open gap that blocks a decision, not evidence of low risk.
 
